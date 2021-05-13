@@ -1,4 +1,4 @@
-const recepty = [
+const poleRecepty = [
   { nadpis: 'Ovocný tvarohový dort',
     popis: 'Poslední roky u mě v létě vedl pusinkový dort Pavlova na mnoho a mnoho způsobů, ale letos mám nového favorita. Už jsem zkoušela mnoho verzí a je vždy výborný, lehký i svěží a tak ideální ne jen na léto.',
     hodnoceni: 4.4,
@@ -112,3 +112,47 @@ const recepty = [
     img: 'https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=353c1f4206a931db97274e65329b85d8&auto=format&fit=crop&w=634&q=80'
   },
 ]
+
+
+const recepty = document.querySelector('#recepty');
+
+function vypisRecepty () {
+    for (i = 0; i < poleRecepty.length; i++) {
+        let recept = document.createElement('div');
+        recept.className = 'recept';
+
+        let receptObrazek = document.createElement('div');
+        receptObrazek.className = 'recept-obrazek';
+        let img = document.createElement('img');
+        img.src = poleRecepty[i].img;
+        receptObrazek.appendChild(img);
+
+        let receptInfo = document.createElement('div');
+        receptInfo.className = 'recept-info';
+
+        let h3 = document.createElement('h3');
+        h3.innerHTML = poleRecepty[i].nadpis;
+
+        recepty.appendChild(recept);
+        recept.appendChild(receptObrazek);
+        receptObrazek.insertAdjacentElement("afterend", receptInfo);
+        receptInfo.appendChild(h3);
+        
+    }
+}    
+
+vypisRecepty();
+
+// const hledat = document.querySelector('#hledat'); 
+// let receptyNadpisy = [];
+
+// function hledej () {
+//   for (i = 0; i < poleRecepty.length; i++) {
+     
+//       receptyNadpisy.push(poleRecepty[i].nadpis);
+//       console.log(receptyNadpisy);
+//    }
+// }
+
+
+
