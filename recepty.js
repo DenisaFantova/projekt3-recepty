@@ -120,23 +120,39 @@ function vypisRecepty () {
     for (i = 0; i < poleRecepty.length; i++) {
         let recept = document.createElement('div');
         recept.className = 'recept';
-
+        recept.addEventListener('click', zobrazDetailReceptu);
+        recept.setAttribute("data-src", poleRecepty[i].img);
+        recept.setAttribute("data-alt", poleRecepty[i].nadpis);
+        recept.setAttribute("data-kategorie", poleRecepty[i].kategorie);
+        recept.setAttribute("data-hodnoceni", poleRecepty[i].hodnoceni);
+        recept.setAttribute("data-popis", poleRecepty[i].popis);
         let receptObrazek = document.createElement('div');
         receptObrazek.className = 'recept-obrazek';
         let img = document.createElement('img');
+        img.setAttribute("data-src", poleRecepty[i].img);
+        img.setAttribute("data-alt", poleRecepty[i].nadpis);
+        img.setAttribute("data-kategorie", poleRecepty[i].kategorie);
+        img.setAttribute("data-hodnoceni", poleRecepty[i].hodnoceni);
+        img.setAttribute("data-popis", poleRecepty[i].popis);
         img.src = poleRecepty[i].img;
+        img.alt = poleRecepty[i].nadpis;
         receptObrazek.appendChild(img);
-
         let receptInfo = document.createElement('div');
         receptInfo.className = 'recept-info';
 
-        let h3 = document.createElement('h3');
-        h3.innerHTML = poleRecepty[i].nadpis;
+        let nadpisReceptu = document.createElement('h3');
+        nadpisReceptu.setAttribute("data-src", poleRecepty[i].img);
+        nadpisReceptu.setAttribute("data-alt", poleRecepty[i].nadpis);
+        nadpisReceptu.setAttribute("data-kategorie", poleRecepty[i].kategorie);
+        nadpisReceptu.setAttribute("data-hodnoceni", poleRecepty[i].hodnoceni);
+        nadpisReceptu.setAttribute("data-popis", poleRecepty[i].popis);
+        nadpisReceptu.innerHTML = poleRecepty[i].nadpis;
+
 
         recepty.appendChild(recept);
         recept.appendChild(receptObrazek);
         receptObrazek.insertAdjacentElement("afterend", receptInfo);
-        receptInfo.appendChild(h3);
+        receptInfo.appendChild(nadpisReceptu);
         
     }
 }    
@@ -153,6 +169,38 @@ vypisRecepty();
 //       console.log(receptyNadpisy);
 //    }
 // }
+
+//const receptDetailObrazku = document.querySelector('.recept-detail-obrazek');
+const vybranyReceptFoto = document.querySelector('#recept-foto');
+const vybranyReceptKategorie = document.querySelector('#recept-kategorie');
+const vybranyReceptHodnoceni = document.querySelector('#recept-hodnoceni');
+const vybranyReceptNadpis = document.querySelector('#recept-nazev');
+const vybranyReceptPopis = document.querySelector('#recept-popis');
+
+
+function zobrazDetailReceptu(recept) {
+    vybranyReceptFoto.src = recept.target.dataset.src;
+    vybranyReceptFoto.alt = recept.target.dataset.alt;
+    vybranyReceptKategorie.innerHTML = recept.target.dataset.kategorie;
+    vybranyReceptHodnoceni.innerHTML = recept.target.dataset.hodnoceni;
+    vybranyReceptNadpis.innerHTML = recept.target.dataset.alt;
+    vybranyReceptPopis.innerHTML = recept.target.dataset.popis;
+
+}
+
+const trideniKategorie = document.querySelector('#kategorie');
+
+function filtrKategorie () {
+
+  for (i = 0; i < poleRecepty.length; i++) {
+    poleRecepty[i].kategorie;
+  }
+
+    if (trideniKategorie.selectedIndex = '1') {
+
+    }
+}
+   
 
 
 
