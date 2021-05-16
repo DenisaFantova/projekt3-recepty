@@ -44,21 +44,21 @@ const poleRecepty = [
   { nadpis: 'Kuřecí salát',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.7,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.pexels.com/photos/33406/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=650&w=940'
   },
   { nadpis: 'Sýrová pizza',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.7,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-0.3.5&s=8695cc99c49c956556f7411faf6df8b0&auto=format&fit=crop&w=1350&q=80'
   },
   { nadpis: 'Kuřecí roláda',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.6,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.unsplash.com/photo-1517609948086-6a03114ae1af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=24e11e05a26a3b992c8469426a628a90&auto=format&fit=crop&w=675&q=80'
   },
@@ -72,7 +72,7 @@ const poleRecepty = [
   { nadpis: 'Hovězí steak',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.7,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   },
@@ -86,7 +86,7 @@ const poleRecepty = [
   { nadpis: 'Ceasar salát',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 3.9,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.unsplash.com/photo-1512852939750-1305098529bf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a5832df503143f0eb527593cd0c5abe6&auto=format&fit=crop&w=1350&q=80'
   },
@@ -100,23 +100,24 @@ const poleRecepty = [
   { nadpis: 'Vegetariánská pizza',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.7,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.unsplash.com/photo-1516183483970-cedfa98169fa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=28a8ffb099b40dc89c12cec6a7f0a68a&auto=format&fit=crop&w=1350&q=80'
   },
   { nadpis: 'Křupavé kuře',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 4.3,
-    kategorie: 'Hlavní jidlo',
+    kategorie: 'Hlavní jídlo',
     stitek: 'hlavniJidlo',
     img: 'https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=353c1f4206a931db97274e65329b85d8&auto=format&fit=crop&w=634&q=80'
   },
 ]
 
 
+
 const recepty = document.querySelector('#recepty');
 
-function vypisRecepty () {
+function vypisRecepty (poleRecepty) {
     for (i = 0; i < poleRecepty.length; i++) {
         let recept = document.createElement('div');
         recept.className = 'recept';
@@ -157,7 +158,7 @@ function vypisRecepty () {
     }
 }    
 
-vypisRecepty();
+vypisRecepty(poleRecepty);
 
 // const hledat = document.querySelector('#hledat'); 
 // let receptyNadpisy = [];
@@ -188,19 +189,74 @@ function zobrazDetailReceptu(recept) {
 
 }
 
-const trideniKategorie = document.querySelector('#kategorie');
 
-function filtrKategorie () {
+
+
+
+let receptySnidane = [];
+let receptyHlavniJidlo = [];
+let receptyDezert = [];
+
+function receptyKategorie () {
 
   for (i = 0; i < poleRecepty.length; i++) {
-    poleRecepty[i].kategorie;
+    if (poleRecepty[i].kategorie === 'Snídaně') {
+      receptySnidane.push(poleRecepty[i]);
+      console.log(receptySnidane);
+    }
+
+    if (poleRecepty[i].kategorie === 'Hlavní jídlo') {
+      receptyHlavniJidlo.push(poleRecepty[i]);
+      console.log(receptyHlavniJidlo);
+    }
+
+    if (poleRecepty[i].kategorie === 'Dezert') {
+      receptyDezert.push(poleRecepty[i]);
+      console.log(receptyDezert);
+    }
+
   }
 
-    if (trideniKategorie.selectedIndex = '1') {
-
-    }
 }
    
+receptyKategorie();
 
 
+const trideniKategorie = document.querySelector('#kategorie');
+let vypsaneRecepty = document.querySelectorAll('.recept');
+console.log(vypsaneRecepty);
+
+function filtrRecepty () {
+  if (trideniKategorie.value === '') {
+    vypisRecepty(poleRecepty);
+    console.log('vse');
+  }
+
+  if (trideniKategorie.value === 'snidane') {
+    //smazRecepty(vypsaneRecepty);
+   //vypsaneRecepty.remove();
+    vypisRecepty(receptySnidane);
+    console.log('snidane');
+
+  }
+
+  if (trideniKategorie.value === 'hlavni-jidlo') {
+    
+    vypisRecepty(receptyHlavniJidlo);
+    console.log('hlavni-jidlo');
+
+  }
+  if (trideniKategorie.value === 'dezert') {
+  
+    vypisRecepty(receptyDezert);
+    console.log('dezert');
+
+  }
+}
+
+// function smazRecepty(parent) {
+//   while (parent.firstChild) {
+//     parent.removeChild(parent.firstChild);
+//   }
+// }
 
