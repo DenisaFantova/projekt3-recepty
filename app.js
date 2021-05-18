@@ -7,9 +7,9 @@ Co je za úkol v tomto projektu:
 2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
 by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
-3) Doplň filtrovanání receptů podle kategorie.
+** 3) Doplň filtrovanání receptů podle kategorie.
 
-4) Doplň řazení receptů podle hodnocení.
+** 4) Doplň řazení receptů podle hodnocení.
 
 ** 5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s  ** ID recept-foto ** ,

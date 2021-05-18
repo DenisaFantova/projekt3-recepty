@@ -30,7 +30,7 @@
             <div class="kategorie">
                 
                 <label for="kategorie">Kategorie</label>
-                <select id="kategorie" onclick="filtrRecepty()">
+                <select id="kategorie" onchange="filtrRecepty()">
                     <option value=""></option>
                     <option value="snidane">Snídaně</option>
                     <option value="hlavni-jidlo">Hlavní jídlo</option>
@@ -41,10 +41,10 @@
             <div class="razeni">
                 
                 <label for="razeni">Seřadit</label>
-                <select id="razeni">
+                <select id="razeni" onchange="filtrRecepty()">
                     <option value=""></option>
-                    <option value="1">Od nejlepších</option>
-                    <option value="2">Od nejhorších</option>
+                    <option value="nejlepsi">Od nejlepších</option>
+                    <option value="nejhorsi">Od nejhorších</option>
                 </select>
                
             </div>
