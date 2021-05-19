@@ -83,7 +83,7 @@ const poleRecepty = [
     stitek: 'dezert',
     img: 'https://images.unsplash.com/photo-1502004960551-dc67f7c24cb3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9ffa9224ea62436ebb99ebf25c50be60&auto=format&fit=crop&w=1320&q=80'
   },
-  { nadpis: 'Ceasar salát',
+  { nadpis: 'Caesar salát',
     popis: 'Jí hoře ocelovými vozíkem. Esli kotě napadne od ferdo, no pás uznat pustý. Prý chlapče sáhla tě koleno jež uvádí a posunující.',
     hodnoceni: 3.9,
     kategorie: 'Hlavní jídlo',
@@ -279,3 +279,19 @@ function seradPodleAbecedy(pole) {
   pole.sort((a,b) => (a.nadpis > b.nadpis) ? 1 : -1);
 }
 
+let hledat = document.querySelector('#hledat');
+let vyhledaneRecepty = [];
+
+function hledej() {
+  for (i = 0; i < poleRecepty.length; i++) {
+    if (poleRecepty[i].nadpis.includes(hledat.value)) {
+      vyhledaneRecepty.push(poleRecepty[i]);  
+      console.log(vyhledaneRecepty);
+      smazVypsaneRecepty();
+      vypisRecepty(vyhledaneRecepty);
+      vyhledaneRecepty.pop();
+      console.log(vyhledaneRecepty);
+      return;
+    }
+  }
+}
