@@ -284,7 +284,8 @@ let vyhledaneRecepty = [];
 
 function hledej() {
   for (i = 0; i < poleRecepty.length; i++) {
-    if (poleRecepty[i].nadpis.includes(hledat.value)) {
+    let polozka = poleRecepty[i].nadpis.toLowerCase();  
+    if (polozka.includes(hledat.value.toLowerCase())) {
       vyhledaneRecepty.push(poleRecepty[i]);  
       console.log(vyhledaneRecepty);
       smazVypsaneRecepty();
