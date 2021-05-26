@@ -200,6 +200,8 @@ function seradPodleAbecedy(pole) {
 }
 
 let hledat = document.querySelector('#hledat');
+hledat.addEventListener('input', hledej);
+hledat.addEventListener("onclick", hledat);
 //let vyhledaneRecepty = [];
 
 function hledej() {
@@ -207,14 +209,17 @@ function hledej() {
     vyhledaneRecepty = [];
 
   for (i = 0; i < poleRecepty.length; i++) {
-    let polozka = poleRecepty[i].nadpis.toLowerCase();  
+  //  let polozka = poleRecepty[i].nadpis.toLowerCase(); 
+    let polozka = poleRecepty[i].nadpis.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
 
     if (hledat.value === '') {
       location.reload();
     }
 
-    if (polozka.includes(hledat.value.toLowerCase())) {
-      vyhledaneRecepty.push(poleRecepty[i]);  
+    //if (polozka.includes(hledat.value.toLowerCase())) {
+    if (polozka.includes(hledat.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+        
+        vyhledaneRecepty.push(poleRecepty[i]);  
       console.log(vyhledaneRecepty);
       smazVypsaneRecepty();
     }
