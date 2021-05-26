@@ -22,6 +22,11 @@ Doplň patričné údaje receptu do HTML prvků s  ** ID recept-foto ** ,
 */
 
 const recepty = document.querySelector('#recepty');
+let hledat = document.querySelector('#hledat');
+hledat.addEventListener('input', hledej);
+hledat.addEventListener("onclick", hledat);
+
+let vypsaneRecepty = [];
 
 function vypisRecepty(poleRecepty) {
     for (i = 0; i < poleRecepty.length; i++) {
@@ -59,7 +64,10 @@ function vypisRecepty(poleRecepty) {
         recept.appendChild(receptObrazek);
         receptObrazek.insertAdjacentElement("afterend", receptInfo);
         receptInfo.appendChild(nadpisReceptu);
+        
+        vypsaneRecepty.push(poleRecepty[i]);
     }
+        console.log(vypsaneRecepty);
 }    
 
 const vybranyReceptFoto = document.querySelector('#recept-foto');
@@ -68,6 +76,8 @@ const vybranyReceptHodnoceni = document.querySelector('#recept-hodnoceni');
 const vybranyReceptNadpis = document.querySelector('#recept-nazev');
 const vybranyReceptPopis = document.querySelector('#recept-popis');
 
+let vybranyRecept = [];
+
 function zobrazDetailReceptu(recept) {
     vybranyReceptFoto.src = recept.target.dataset.src;
     vybranyReceptFoto.alt = recept.target.dataset.alt;
@@ -75,7 +85,38 @@ function zobrazDetailReceptu(recept) {
     vybranyReceptHodnoceni.innerHTML = recept.target.dataset.hodnoceni;
     vybranyReceptNadpis.innerHTML = recept.target.dataset.alt;
     vybranyReceptPopis.innerHTML = recept.target.dataset.popis;
+    let vybranyRecept = {
+        src: recept.target.dataset.src,
+        kategorie: recept.target.dataset.kategorie,
+        hodnoceni: recept.target.dataset.hodnoceni,
+        nadpis: recept.target.dataset.alt,
+        popis: recept.target.dataset.popis        
+    };
+    ulozReceptDoLocalStorage(vybranyRecept);
 }
+
+function ulozReceptDoLocalStorage(vybranyRecept) {
+    let hodnota = JSON.stringify(vybranyRecept);
+    localStorage.setItem('vybranyRecept', hodnota);
+}
+
+function zobrazReceptZLocalStorage() {
+    let hodnota = localStorage.getItem('vybranyRecept');
+    //zobrazDetailReceptu(hodnota);
+    if (hodnota === null || hodnota === undefined) {
+        vypisRecepty(poleRecepty);
+    } else {
+        posledniRecept = JSON.parse(hodnota);
+        vybranyReceptFoto.src = posledniRecept.src;
+        vybranyReceptFoto.alt = posledniRecept.nadpis;
+        vybranyReceptKategorie.innerHTML = posledniRecept.kategorie;
+        vybranyReceptHodnoceni.innerHTML = posledniRecept.hodnoceni;
+        vybranyReceptNadpis.innerHTML = posledniRecept.nadpis;
+        vybranyReceptPopis.innerHTML = posledniRecept.popis;
+    }
+}
+
+zobrazReceptZLocalStorage();
 
 let receptySnidane = [];
 let receptyHlavniJidlo = [];
@@ -106,74 +147,101 @@ const divRecepty = document.querySelector('#recepty');
 
 function filtrRecepty () {
   if (trideniKategorie.value === '' && seradit.value === '') {
+    hledat.value = "";
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradPodleAbecedy(poleRecepty);
     vypisRecepty(poleRecepty);
   }
 
   if (trideniKategorie.value === '' && seradit.value === 'nejlepsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradOdNejlepsiho(poleRecepty);
     vypisRecepty(poleRecepty);
   }
 
   if (trideniKategorie.value === '' && seradit.value === 'nejhorsi') {
+    hledat.value = "";
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradOdNejhorsiho(poleRecepty);
     vypisRecepty(poleRecepty);
   }
 
   if (trideniKategorie.value === 'snidane' && seradit.value === '') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradPodleAbecedy(receptySnidane);
     vypisRecepty(receptySnidane);
-  }
+    }
+  
 
   if (trideniKategorie.value === 'snidane' && seradit.value === 'nejlepsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradOdNejlepsiho(receptySnidane);
     vypisRecepty(receptySnidane);
   }
 
   if (trideniKategorie.value === 'snidane' && seradit.value === 'nejhorsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty(receptySnidane);
     seradOdNejhorsiho(receptySnidane);
     vypisRecepty(receptySnidane);
   }
 
   if (trideniKategorie.value === 'hlavni-jidlo' && seradit.value === '') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradPodleAbecedy(receptyHlavniJidlo);
     vypisRecepty(receptyHlavniJidlo);
   }
 
   if (trideniKategorie.value === 'hlavni-jidlo' && seradit.value === 'nejlepsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradOdNejlepsiho(receptyHlavniJidlo);
     vypisRecepty(receptyHlavniJidlo);
   }
+  
   if (trideniKategorie.value === 'hlavni-jidlo' && seradit.value === 'nejhorsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty(receptyHlavniJidlo);
     seradOdNejhorsiho(receptyHlavniJidlo);
     vypisRecepty(receptyHlavniJidlo);
   }
 
   if (trideniKategorie.value === 'dezert' && seradit.value === '') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradPodleAbecedy(receptyDezert);
     vypisRecepty(receptyDezert);
   }
 
   if (trideniKategorie.value === 'dezert' && seradit.value === 'nejlepsi') {
+    hledat.value = "";  
+    vypsaneRecepty = [];
     smazVypsaneRecepty();
     seradOdNejlepsiho(receptyDezert);
     vypisRecepty(receptyDezert);
   }
 
   if (trideniKategorie.value === 'dezert' && seradit.value === 'nejhorsi') {
-      smazVypsaneRecepty(receptyDezert);
-      seradOdNejhorsiho(receptyDezert);
-      vypisRecepty(receptyDezert);
+    hledat.value = "";  
+    vypsaneRecepty = [];
+    smazVypsaneRecepty(receptyDezert);
+    seradOdNejhorsiho(receptyDezert);
+    vypisRecepty(receptyDezert);
   }
 }
 
@@ -199,34 +267,61 @@ function seradPodleAbecedy(pole) {
   pole.sort((a,b) => (a.nadpis > b.nadpis) ? 1 : -1);
 }
 
-let hledat = document.querySelector('#hledat');
-hledat.addEventListener('input', hledej);
-hledat.addEventListener("onclick", hledat);
-//let vyhledaneRecepty = [];
+
+// let vyhledaneRecepty = [];
+
+// function hledej() {
+
+//     vyhledaneRecepty = [];
+
+//   for (i = 0; i < poleRecepty.length; i++) {
+//     let receptMalymiPismeny = poleRecepty[i].nadpis.toLowerCase();
+//     let vyhledavanaPolozka = hledat.value.toLowerCase();
+
+//     receptBezDiakritiky = receptMalymiPismeny.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
+
+//     if (hledat.value === '') {
+//       location.reload();
+//     }
+
+//     //if (polozka.includes(hledat.value.toLowerCase())) {
+//     if (receptBezDiakritiky.includes(hledat.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+        
+//       vyhledaneRecepty.push(poleRecepty[i]);  
+//       smazVypsaneRecepty();
+//     }
+//   }
+  
+//   vypisRecepty(vyhledaneRecepty);
+  
+// }
+
+let vyhledaneRecepty = [];
 
 function hledej() {
 
     vyhledaneRecepty = [];
+    
 
-  for (i = 0; i < poleRecepty.length; i++) {
-    let receptMalymiPismeny = poleRecepty[i].nadpis.toLowerCase();
+  for (i = 0; i < vypsaneRecepty.length; i++) {
+    let receptMalymiPismeny = vypsaneRecepty[i].nadpis.toLowerCase();
     let vyhledavanaPolozka = hledat.value.toLowerCase();
 
     receptBezDiakritiky = receptMalymiPismeny.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
 
-    if (hledat.value === '') {
-      location.reload();
-    }
+   if (hledat.value === '') {
+        location.reload(); 
+     }
 
-    //if (polozka.includes(hledat.value.toLowerCase())) {
     if (receptBezDiakritiky.includes(hledat.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
         
-      vyhledaneRecepty.push(poleRecepty[i]);  
-      console.log(vyhledaneRecepty);
+      vyhledaneRecepty.push(vypsaneRecepty[i]);  
       smazVypsaneRecepty();
+      
     }
+    
   }
-  
+  vypsaneRecepty = [];
   vypisRecepty(vyhledaneRecepty);
   
 }

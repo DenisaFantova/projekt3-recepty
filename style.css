@@ -20,11 +20,11 @@ body {
     padding: 50px 80px;
     font-family: 'Raleway', sans-serif;
     color: #555;
-    /*
+    /* background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
     background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
     background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
     */
-    background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+    background-color: rgb(228, 228, 228);
 
 }
 
@@ -97,7 +97,7 @@ h3 {
     padding: 8px 12px;
     border: 1px solid #feada6;
     background-color: white;
-    border-radius: 5px 0 0 5px;
+    border-radius: 0 5px 5px 0;
     font-size: 20px;
     outline: 0;
 }
@@ -107,7 +107,7 @@ h3 {
     border: 1px solid #d86849;
     background-color: #d86849;
     color: white;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px 0 0 5px;
     font-size: 20px;
     outline: 0;
 }
