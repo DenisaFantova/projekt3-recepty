@@ -209,17 +209,19 @@ function hledej() {
     vyhledaneRecepty = [];
 
   for (i = 0; i < poleRecepty.length; i++) {
-  //  let polozka = poleRecepty[i].nadpis.toLowerCase(); 
-    let polozka = poleRecepty[i].nadpis.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
+    let receptMalymiPismeny = poleRecepty[i].nadpis.toLowerCase();
+    let vyhledavanaPolozka = hledat.value.toLowerCase();
+
+    receptBezDiakritiky = receptMalymiPismeny.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
 
     if (hledat.value === '') {
       location.reload();
     }
 
     //if (polozka.includes(hledat.value.toLowerCase())) {
-    if (polozka.includes(hledat.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+    if (receptBezDiakritiky.includes(hledat.value.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
         
-        vyhledaneRecepty.push(poleRecepty[i]);  
+      vyhledaneRecepty.push(poleRecepty[i]);  
       console.log(vyhledaneRecepty);
       smazVypsaneRecepty();
     }
