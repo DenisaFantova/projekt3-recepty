@@ -24,7 +24,7 @@ Doplň patričné údaje receptu do HTML prvků s  ** ID recept-foto ** ,
 const recepty = document.querySelector('#recepty');
 let hledat = document.querySelector('#hledat');
 hledat.addEventListener('input', hledej);
-hledat.addEventListener("onclick", hledat);
+hledat.addEventListener("onclick", hledej);
 
 let vypsaneRecepty = [];
 
